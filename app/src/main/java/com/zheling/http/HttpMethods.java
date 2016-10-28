@@ -1,7 +1,9 @@
 package com.zheling.http;
 
-import com.zheling.entity.MovieEntity;
+import com.zheling.entity.HttpResult;
+import com.zheling.entity.Subject;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -56,7 +58,7 @@ public class HttpMethods {
      * @param start      起始位置
      * @param count      获取长度
      */
-    public void getTopMovie(Subscriber<MovieEntity> subscriber, int start, int count) {
+    public void getTopMovie(Subscriber<HttpResult<List<Subject>>> subscriber, int start, int count) {
         movieService.getTopMovie(start, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

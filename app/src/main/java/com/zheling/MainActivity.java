@@ -6,8 +6,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zheling.entity.MovieEntity;
+import com.zheling.entity.HttpResult;
+import com.zheling.entity.Subject;
 import com.zheling.http.HttpMethods;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 进行网络请求
     private void getMovie() {
-        Subscriber<MovieEntity> subscriber = new Subscriber<MovieEntity>() {
+        Subscriber<HttpResult<List<Subject>>> subscriber = new Subscriber<HttpResult<List<Subject>>>() {
             @Override
             public void onCompleted() {
                 Toast.makeText(MainActivity.this, "Get Top Movie Completed", Toast.LENGTH_LONG).show();
@@ -47,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(MovieEntity movieEntity) {
-                resultTV.setText(movieEntity.toString());
+            public void onNext(HttpResult<List<Subject>> subjects) {
+                resultTV.setText(subjects.toString());
             }
         };
         HttpMethods.getInstance().getTopMovie(subscriber, 0, 10);
