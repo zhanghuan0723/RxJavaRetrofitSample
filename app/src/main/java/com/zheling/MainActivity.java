@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.zheling.entity.Subject;
 import com.zheling.http.HttpMethods;
-import com.zheling.progress.ProgressSubscriber;
+import com.zheling.subscribers.ProgressSubscriber;
 import com.zheling.subscribers.SubscriberOnNextListener;
 
 import java.util.List;
