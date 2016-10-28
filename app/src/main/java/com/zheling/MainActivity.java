@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zheling.entity.HttpResult;
 import com.zheling.entity.Subject;
 import com.zheling.http.HttpMethods;
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 进行网络请求
     private void getMovie() {
-        Subscriber<HttpResult<List<Subject>>> subscriber = new Subscriber<HttpResult<List<Subject>>>() {
+        Subscriber<List<Subject>> subscriber = new Subscriber<List<Subject>>() {
             @Override
             public void onCompleted() {
                 Toast.makeText(MainActivity.this, "Get Top Movie Completed", Toast.LENGTH_LONG).show();
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(HttpResult<List<Subject>> subjects) {
+            public void onNext(List<Subject> subjects) {
                 resultTV.setText(subjects.toString());
             }
         };
